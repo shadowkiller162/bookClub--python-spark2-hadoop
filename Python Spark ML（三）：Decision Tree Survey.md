@@ -33,6 +33,43 @@
 ### 例子:
 * 假設我們想要分類三種主題的相片：火山、海洋、森林，很明顯的，這三大類圖片有著不同的主色，例如火山偏紅、海洋偏藍、森林偏綠，那麼，我們的決策樹可設計並運作如下：
 ![](https://dl.dropbox.com/s/s5jfknq4j2msju1/Decisiontree.png)Decision tree
+
+### 程式範例(Python):
+```python
+# Import the necessary modules and libraries
+import numpy as np
+from sklearn.tree import DecisionTreeRegressor
+import matplotlib.pyplot as plt
+
+# Create a random dataset
+rng = np.random.RandomState(1)
+X = np.sort(5 * rng.rand(80, 1), axis=0)
+y = np.sin(X).ravel()
+y[::5] += 3 * (0.5 - rng.rand(16))
+
+# Fit regression model
+regr_1 = DecisionTreeRegressor(max_depth=2)
+regr_2 = DecisionTreeRegressor(max_depth=5)
+regr_1.fit(X, y)
+regr_2.fit(X, y)
+
+# Predict
+X_test = np.arange(0.0, 5.0, 0.01)[:, np.newaxis]
+y_1 = regr_1.predict(X_test)
+y_2 = regr_2.predict(X_test)
+
+# Plot the results
+plt.figure()
+plt.scatter(X, y, c="darkorange", label="data")
+plt.plot(X_test, y_1, color="cornflowerblue", label="max_depth=2", linewidth=2)
+plt.plot(X_test, y_2, color="yellowgreen", label="max_depth=5", linewidth=2)
+plt.xlabel("data")
+plt.ylabel("target")
+plt.title("Decision Tree Regression")
+plt.legend()
+plt.show()
+```
+![](https://dl.dropbox.com/s/benni4tfilseohk/DecisionTreeRegression.png)
 ---
 
 References
@@ -45,3 +82,6 @@ http://wiki.mbalib.com/zh-tw/%E5%86%B3%E7%AD%96%E6%A0%91
 
 [3]決策樹 Decision trees - CH.Tseng
 https://chtseng.wordpress.com/2017/02/10/%E6%B1%BA%E7%AD%96%E6%A8%B9-decision-trees/
+
+[4]機器學習：使用Python - Contributor: 陳巧寧、曾裕勝、黃騰毅 、蔡奕甫
+https://machine-learning-python.kspax.io/Decision_trees/ex1_Decision_tree_regression.html
