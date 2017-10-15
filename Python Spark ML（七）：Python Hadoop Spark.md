@@ -35,4 +35,4 @@
 > * Spark MLlib：RDD-based 機器學習API
 > * Spark ML pipeline：Dataframes-based 機器學習API
 * Hadoop 介紹：HDFS + Map-Reduce
-> Spark與Hadoop的結合，spark取代了Map-Reduce的運算框架位置，利用HDFS分散式檔案系統來存取數據，可以搭配YARN，將資源管理交給YARN。
+> Spark與Hadoop的結合，Spark取代了Map-Reduce的運算框架位置，利用HDFS分散式檔案系統來存取數據，可以搭配YARN，將資源管理交給YARN，Spark專注處理運算工作。
